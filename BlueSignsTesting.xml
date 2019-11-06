@@ -10,15 +10,45 @@
     <_>
       <Filename>"Blue Signs/Testing/Blue002.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>Lift</nameStr>
+          <coordinates>
+            <_>
+              2255 1423</_>
+            <_>
+              2215 974</_>
+            <_>
+              2689 932</_>
+            <_>
+              2728 1380</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue003.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>Exit</nameStr>
+          <coordinates>
+            <_>
+              1024 1379</_>
+            <_>
+              1012 940</_>
+            <_>
+              1447 930</_>
+            <_>
+              1458 1368</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue004.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>One</nameStr>
+          <coordinates>
+            <_>
+              2039 1687</_>
+            <_>
+              2034 1501</_>
+            <_>
+              2224 1496</_>
+            <_>
+              2228 1681</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue005.jpg"</Filename>
       <Objects>
@@ -30,19 +60,114 @@
     <_>
       <Filename>"Blue Signs/Testing/Blue008.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>One</nameStr>
+          <coordinates>
+            <_>
+              1844 1401</_>
+            <_>
+              1685 1396</_>
+            <_>
+              1688 1241</_>
+            <_>
+              1848 1245</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue011.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>Information</nameStr>
+          <coordinates>
+            <_>
+              3776 752</_>
+            <_>
+              3583 737</_>
+            <_>
+              3600 522</_>
+            <_>
+              3794 538</_></coordinates></_>
+        <_>
+          <nameStr>Information</nameStr>
+          <coordinates>
+            <_>
+              520 634</_>
+            <_>
+              269 628</_>
+            <_>
+              274 394</_>
+            <_>
+              525 399</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue012.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>Information</nameStr>
+          <coordinates>
+            <_>
+              2279 1171</_>
+            <_>
+              2267 580</_>
+            <_>
+              2795 569</_>
+            <_>
+              2808 1159</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue016.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>Information</nameStr>
+          <coordinates>
+            <_>
+              3682 908</_>
+            <_>
+              3557 906</_>
+            <_>
+              3561 714</_>
+            <_>
+              3687 717</_></coordinates></_>
+        <_>
+          <nameStr>Information</nameStr>
+          <coordinates>
+            <_>
+              1752 778</_>
+            <_>
+              1751 535</_>
+            <_>
+              1952 534</_>
+            <_>
+              1954 778</_></coordinates></_>
+        <_>
+          <nameStr>TicketDesk</nameStr>
+          <coordinates>
+            <_>
+              3364 887</_>
+            <_>
+              3220 883</_>
+            <_>
+              3226 680</_>
+            <_>
+              3369 683</_></coordinates></_>
+        <_>
+          <nameStr>TicketDesk</nameStr>
+          <coordinates>
+            <_>
+              2728 868</_>
+            <_>
+              2546 867</_>
+            <_>
+              2547 625</_>
+            <_>
+              2730 625</_></coordinates></_>
+        <_>
+          <nameStr>TicketDesk</nameStr>
+          <coordinates>
+            <_>
+              1127 752</_>
+            <_>
+              1121 456</_>
+            <_>
+              1382 450</_>
+            <_>
+              1389 747</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue017.jpg"</Filename>
       <Objects>
@@ -50,11 +175,31 @@
     <_>
       <Filename>"Blue Signs/Testing/Blue018.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>TicketDesk</nameStr>
+          <coordinates>
+            <_>
+              1303 1464</_>
+            <_>
+              1132 1442</_>
+            <_>
+              1143 1353</_>
+            <_>
+              1315 1376</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue019.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>TicketDesk</nameStr>
+          <coordinates>
+            <_>
+              1369 1444</_>
+            <_>
+              1356 1170</_>
+            <_>
+              1618 1158</_>
+            <_>
+              1631 1432</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue020.jpg"</Filename>
       <Objects>
@@ -62,47 +207,366 @@
     <_>
       <Filename>"Blue Signs/Testing/Blue021.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>Information</nameStr>
+          <coordinates>
+            <_>
+              236 1268</_>
+            <_>
+              234 1092</_>
+            <_>
+              388 1091</_>
+            <_>
+              390 1266</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue023.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>Lift</nameStr>
+          <coordinates>
+            <_>
+              2098 1324</_>
+            <_>
+              1963 1319</_>
+            <_>
+              1967 1188</_>
+            <_>
+              2101 1192</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue025.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>Escalator</nameStr>
+          <coordinates>
+            <_>
+              1645 1496</_>
+            <_>
+              1624 1213</_>
+            <_>
+              1929 1190</_>
+            <_>
+              1951 1472</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue028.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>One</nameStr>
+          <coordinates>
+            <_>
+              2132 1231</_>
+            <_>
+              2129 1105</_>
+            <_>
+              2258 1101</_>
+            <_>
+              2261 1227</_></coordinates></_>
+        <_>
+          <nameStr>Stairs</nameStr>
+          <coordinates>
+            <_>
+              2302 1229</_>
+            <_>
+              2300 1101</_>
+            <_>
+              2429 1099</_>
+            <_>
+              2431 1226</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue030.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>Information</nameStr>
+          <coordinates>
+            <_>
+              2049 1026</_>
+            <_>
+              1716 1023</_>
+            <_>
+              1719 704</_>
+            <_>
+              2051 707</_></coordinates></_>
+        <_>
+          <nameStr>Lift</nameStr>
+          <coordinates>
+            <_>
+              1264 1663</_>
+            <_>
+              1089 1659</_>
+            <_>
+              1092 1490</_>
+            <_>
+              1268 1495</_></coordinates></_>
+        <_>
+          <nameStr>One</nameStr>
+          <coordinates>
+            <_>
+              1020 1661</_>
+            <_>
+              840 1657</_>
+            <_>
+              843 1486</_>
+            <_>
+              1024 1491</_></coordinates></_>
+        <_>
+          <nameStr>One</nameStr>
+          <coordinates>
+            <_>
+              2864 1020</_>
+            <_>
+              2574 1020</_>
+            <_>
+              2574 740</_>
+            <_>
+              2864 740</_></coordinates></_>
+        <_>
+          <nameStr>TicketDesk</nameStr>
+          <coordinates>
+            <_>
+              1635 1023</_>
+            <_>
+              1296 1014</_>
+            <_>
+              1304 689</_>
+            <_>
+              1643 698</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue034.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>Coffee</nameStr>
+          <coordinates>
+            <_>
+              2208 1614</_>
+            <_>
+              2205 1395</_>
+            <_>
+              2429 1391</_>
+            <_>
+              2432 1610</_></coordinates></_>
+        <_>
+          <nameStr>Gents</nameStr>
+          <coordinates>
+            <_>
+              1957 1614</_>
+            <_>
+              1956 1398</_>
+            <_>
+              2178 1396</_>
+            <_>
+              2178 1613</_></coordinates></_>
+        <_>
+          <nameStr>Ladies</nameStr>
+          <coordinates>
+            <_>
+              1716 1617</_>
+            <_>
+              1716 1402</_>
+            <_>
+              1937 1402</_>
+            <_>
+              1937 1617</_></coordinates></_>
+        <_>
+          <nameStr>Two</nameStr>
+          <coordinates>
+            <_>
+              2461 1611</_>
+            <_>
+              2459 1391</_>
+            <_>
+              2688 1388</_>
+            <_>
+              2689 1609</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue035.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>Coffee</nameStr>
+          <coordinates>
+            <_>
+              2882 963</_>
+            <_>
+              2881 796</_>
+            <_>
+              3059 794</_>
+            <_>
+              3060 961</_></coordinates></_>
+        <_>
+          <nameStr>Disabled</nameStr>
+          <coordinates>
+            <_>
+              477 1341</_>
+            <_>
+              262 1332</_>
+            <_>
+              272 1100</_>
+            <_>
+              488 1110</_></coordinates></_>
+        <_>
+          <nameStr>Gents</nameStr>
+          <coordinates>
+            <_>
+              2401 974</_>
+            <_>
+              2398 810</_>
+            <_>
+              2571 807</_>
+            <_>
+              2573 970</_></coordinates></_>
+        <_>
+          <nameStr>Ladies</nameStr>
+          <coordinates>
+            <_>
+              1076 1328</_>
+            <_>
+              859 1322</_>
+            <_>
+              865 1095</_>
+            <_>
+              1083 1102</_></coordinates></_>
+        <_>
+          <nameStr>Ladies</nameStr>
+          <coordinates>
+            <_>
+              2645 967</_>
+            <_>
+              2644 801</_>
+            <_>
+              2818 800</_>
+            <_>
+              2819 966</_></coordinates></_>
+        <_>
+          <nameStr>Two</nameStr>
+          <coordinates>
+            <_>
+              3378 954</_>
+            <_>
+              3376 784</_>
+            <_>
+              3563 780</_>
+            <_>
+              3566 951</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue036.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>One</nameStr>
+          <coordinates>
+            <_>
+              2130 945</_>
+            <_>
+              2125 715</_>
+            <_>
+              2359 710</_>
+            <_>
+              2363 939</_></coordinates></_>
+        <_>
+          <nameStr>Stairs</nameStr>
+          <coordinates>
+            <_>
+              2443 942</_>
+            <_>
+              2439 710</_>
+            <_>
+              2673 706</_>
+            <_>
+              2676 937</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue037.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>Coffee</nameStr>
+          <coordinates>
+            <_>
+              1881 1436</_>
+            <_>
+              1752 1435</_>
+            <_>
+              1752 1307</_>
+            <_>
+              1881 1308</_></coordinates></_>
+        <_>
+          <nameStr>Gents</nameStr>
+          <coordinates>
+            <_>
+              2030 1436</_>
+            <_>
+              1902 1434</_>
+            <_>
+              1903 1307</_>
+            <_>
+              2031 1309</_></coordinates></_>
+        <_>
+          <nameStr>Ladies</nameStr>
+          <coordinates>
+            <_>
+              2179 1437</_>
+            <_>
+              2052 1435</_>
+            <_>
+              2054 1310</_>
+            <_>
+              2181 1312</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue038.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>Stairs</nameStr>
+          <coordinates>
+            <_>
+              1760 1347</_>
+            <_>
+              1650 1342</_>
+            <_>
+              1654 1237</_>
+            <_>
+              1763 1241</_></coordinates></_>
+        <_>
+          <nameStr>Two</nameStr>
+          <coordinates>
+            <_>
+              2816 1555</_>
+            <_>
+              2813 1384</_>
+            <_>
+              2982 1381</_>
+            <_>
+              2986 1553</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue042.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>Lift</nameStr>
+          <coordinates>
+            <_>
+              1639 863</_>
+            <_>
+              1401 856</_>
+            <_>
+              1406 624</_>
+            <_>
+              1645 630</_></coordinates></_>
+        <_>
+          <nameStr>One</nameStr>
+          <coordinates>
+            <_>
+              2741 912</_>
+            <_>
+              2738 518</_>
+            <_>
+              3123 515</_>
+            <_>
+              3127 910</_></coordinates></_>
+        <_>
+          <nameStr>Two</nameStr>
+          <coordinates>
+            <_>
+              1329 857</_>
+            <_>
+              1085 849</_>
+            <_>
+              1092 615</_>
+            <_>
+              1335 622</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue043.jpg"</Filename>
       <Objects>
@@ -114,25 +578,173 @@
     <_>
       <Filename>"Blue Signs/Testing/Blue045.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>Gents</nameStr>
+          <coordinates>
+            <_>
+              1757 1344</_>
+            <_>
+              1745 826</_>
+            <_>
+              2139 816</_>
+            <_>
+              2152 1335</_></coordinates></_>
+        <_>
+          <nameStr>Ladies</nameStr>
+          <coordinates>
+            <_>
+              2342 1425</_>
+            <_>
+              2313 953</_>
+            <_>
+              2630 934</_>
+            <_>
+              2660 1406</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue046.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>Gents</nameStr>
+          <coordinates>
+            <_>
+              1603 1587</_>
+            <_>
+              1588 1260</_>
+            <_>
+              1995 1241</_>
+            <_>
+              2011 1567</_></coordinates></_>
+        <_>
+          <nameStr>Ladies</nameStr>
+          <coordinates>
+            <_>
+              2129 1559</_>
+            <_>
+              2115 1225</_>
+            <_>
+              2518 1209</_>
+            <_>
+              2532 1543</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue047.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>Exit</nameStr>
+          <coordinates>
+            <_>
+              2797 1847</_>
+            <_>
+              2022 1820</_>
+            <_>
+              2048 1049</_>
+            <_>
+              2823 1076</_></coordinates></_>
+        <_>
+          <nameStr>One</nameStr>
+          <coordinates>
+            <_>
+              1886 1815</_>
+            <_>
+              1173 1812</_>
+            <_>
+              1177 1076</_>
+            <_>
+              1889 1079</_></coordinates></_>
+        <_>
+          <nameStr>Stairs</nameStr>
+          <coordinates>
+            <_>
+              3815 1883</_>
+            <_>
+              2963 1850</_>
+            <_>
+              2995 1040</_>
+            <_>
+              3846 1073</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue048.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>Disabled</nameStr>
+          <coordinates>
+            <_>
+              1601 1452</_>
+            <_>
+              1599 1288</_>
+            <_>
+              1758 1288</_>
+            <_>
+              1759 1451</_></coordinates></_>
+        <_>
+          <nameStr>Two</nameStr>
+          <coordinates>
+            <_>
+              2454 1220</_>
+            <_>
+              2139 1210</_>
+            <_>
+              2150 881</_>
+            <_>
+              2466 892</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue050.jpg"</Filename>
       <Objects>
-        </Objects></_>
+        <_>
+          <nameStr>Gents</nameStr>
+          <coordinates>
+            <_>
+              2554 1643</_>
+            <_>
+              2515 1280</_>
+            <_>
+              2978 1231</_>
+            <_>
+              3017 1594</_></coordinates></_>
+        <_>
+          <nameStr>Ladies</nameStr>
+          <coordinates>
+            <_>
+              2111 1673</_>
+            <_>
+              2077 1367</_>
+            <_>
+              2485 1321</_>
+            <_>
+              2520 1628</_></coordinates></_></Objects></_>
     <_>
       <Filename>"Blue Signs/Testing/Blue051.jpg"</Filename>
       <Objects>
-        </Objects></_></ImagesAndObjects></AnnotatedImages>
+        <_>
+          <nameStr>Escalator</nameStr>
+          <coordinates>
+            <_>
+              2699 1194</_>
+            <_>
+              2690 923</_>
+            <_>
+              2977 914</_>
+            <_>
+              2985 1184</_></coordinates></_>
+        <_>
+          <nameStr>Lift</nameStr>
+          <coordinates>
+            <_>
+              3024 1182</_>
+            <_>
+              3020 907</_>
+            <_>
+              3312 903</_>
+            <_>
+              3316 1178</_></coordinates></_>
+        <_>
+          <nameStr>One</nameStr>
+          <coordinates>
+            <_>
+              2195 1210</_>
+            <_>
+              2187 944</_>
+            <_>
+              2457 936</_>
+            <_>
+              2464 1201</_></coordinates></_></Objects></_></ImagesAndObjects></AnnotatedImages>
 </opencv_storage>

@@ -6,6 +6,7 @@
 #include <filesystem> // Microsoft-specific implementation header file name
 #include <opencv2/ml.hpp>
 #include <map>
+#include <string>
 
 using namespace std::experimental::filesystem::v1;
 using namespace std;
@@ -21,13 +22,26 @@ using namespace std;
 // Located shape must overlap the ground truth by 80% to be considered a match
 #define REQUIRED_OVERLAP 0.8
 
-map<string, Ptr<cv::ml::SVM>> classesSVM;
+vector<std::string> Classes = {
+	"Coffee",
+	"Disabled",
+	"Escalator",
+	"Exit",
+	"Gents",
+	"Information",
+	"Ladies",
+	"Lift",
+	"One",
+	"Stairs",
+	"TicketDesk",
+	"Two"
+};
 
 void showImage(string name, Mat image)
 {
 	namedWindow(name, WINDOW_NORMAL);
 	imshow(name, image);
-	waitKey();
+	waitKey(1);
 	destroyWindow(name);
 }
 
@@ -83,7 +97,7 @@ class ImageWithBlueSignObjects : public ImageWithObjects
 {
 public:
 	ImageWithBlueSignObjects(string passed_filename);
-	ImageWithBlueSignObjects(FileNode& node); 
+	ImageWithBlueSignObjects(FileNode& node);
 	void LocateAndAddAllObjects(AnnotatedImages& training_images);  // *** Student needs to develop this routine and add in objects using the addObject method
 };
 
@@ -259,7 +273,7 @@ void ImageWithObjects::extractAndSetObjectImage(ObjectAndLocation *new_object)
 }
 void ImageWithObjects::read(FileNode& node)
 {
-	filename = (string) node["Filename"];
+	filename = (string)node["Filename"];
 	image = imread(filename, -1);
 	FileNode images_node = node["Objects"];
 	if (images_node.type() == FileNode::SEQ)
@@ -485,66 +499,26 @@ void MyApplication()
 		trainingImages.read(training_file);
 	}
 	training_file.release();
-	Mat image_of_all_training_objects = trainingImages.getImageOfAllObjects();
-	imshow("All Training Objects", image_of_all_training_objects);
-	imwrite("AllTrainingObjectImages.jpg", image_of_all_training_objects);
+	//Mat image_of_all_training_objects = trainingImages.getImageOfAllObjects();
+	//imshow("All Training Objects", image_of_all_training_objects);
+	//imwrite("AllTrainingObjectImages.jpg", image_of_all_training_objects);
 	char ch = cv::waitKey(1);
 
-	vector<ImageWithObjects *> train_objImg = trainingImages.annotated_images;
-	Mat train_imgs;
-
-	for (int i = 0; i < train_objImg.size(); i++) {
-		ObjectAndLocation* obj = train_objImg[i]->getObject(0);
-		classesSVM.insert({ obj->getName(), cv::ml::SVM::create()});
-		Mat img = obj->getImage();
-		resize(img, img, Size(200,200));
-		cvtColor(img, img, COLOR_BGR2GRAY);
-		GaussianBlur(img, img, Size(5, 5), 0, 0);
-		adaptiveThreshold(img, img, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY_INV, 11, 2);
-		//showImage("train", img);
-		Mat float_data;
-		img.convertTo(float_data, CV_32FC1);
-		train_imgs.push_back(float_data.reshape(1, 1));
-	}
-	
-	for (auto it = classesSVM.begin(); it != classesSVM.end(); it++) {
-		string className = it->first;
-		Mat responses;
-
-		for (int i = 0; i < train_objImg.size(); i++) {
-			ObjectAndLocation* obj = train_objImg[i]->getObject(0);
-
-			if (obj->getName() != className) {
-				responses.push_back(-1);
-			}
-			else {
-				responses.push_back(1);
-			}
-		}
-
-		for (size_t i = 0; i < responses.total(); i++) {
-			auto tmp = responses.at<int>(i);
-		}
-
-		Ptr<cv::ml::TrainData> trainData = cv::ml::TrainData::create(train_imgs, cv::ml::ROW_SAMPLE, responses);
-		it->second->train(trainData);
-	}
-
 	AnnotatedImages groundTruthImages;
-	//FileStorage ground_truth_file("BlueSignsGroundTruth.xml", FileStorage::READ);
-	//if (!ground_truth_file.isOpened())
-	//{
-	//	cout << "Could not open the file: \"" << "BlueSignsGroundTruth.xml" << "\"" << endl;
-	//}
-	//else
-	//{
-	//	groundTruthImages.read(ground_truth_file);
-	//}
-	//ground_truth_file.release();
+	FileStorage ground_truth_file("BlueSignsGroundTruth.xml", FileStorage::READ);
+	if (!ground_truth_file.isOpened())
+	{
+		cout << "Could not open the file: \"" << "BlueSignsGroundTruth.xml" << "\"" << endl;
+	}
+	else
+	{
+		groundTruthImages.read(ground_truth_file);
+	}
+	ground_truth_file.release();
 	//Mat image_of_all_ground_truth_objects = groundTruthImages.getImageOfAllObjects();
 	//imshow("All Ground Truth Objects", image_of_all_ground_truth_objects);
 	//imwrite("AllGroundTruthObjectImages.jpg", image_of_all_ground_truth_objects);
-	//ch = cv::waitKey(1);
+	ch = cv::waitKey(1);
 
 	AnnotatedImages unknownImages("Blue Signs/Testing");
 	unknownImages.LocateAndAddAllObjects(trainingImages);
@@ -558,9 +532,9 @@ void MyApplication()
 		unknownImages.write(unknowns_file);
 	}
 	unknowns_file.release();
-	Mat image_of_recognised_objects = unknownImages.getImageOfAllObjects();
-	imshow("All Recognised Objects", image_of_recognised_objects);
-	imwrite("AllRecognisedObjects.jpg", image_of_recognised_objects);
+	//Mat image_of_recognised_objects = unknownImages.getImageOfAllObjects();
+	//imshow("All Recognised Objects", image_of_recognised_objects);
+	//imwrite("AllRecognisedObjects.jpg", image_of_recognised_objects);
 
 	ConfusionMatrix results(trainingImages);
 	unknownImages.CompareObjectsWithGroundTruth(trainingImages, groundTruthImages, results);
@@ -880,20 +854,20 @@ void ConfusionMatrix::Print()
 		if (recognised_as_index < confusion_size - 1)
 			cout << class_names[recognised_as_index] << ",";
 		else cout << "False Negative,";
+	cout << endl;
+	for (int ground_truth_index = 0; (ground_truth_index <= class_names.size()); ground_truth_index++)
+	{
+		if (ground_truth_index < confusion_size - 1)
+			cout << "Ground Truth," << class_names[ground_truth_index] << ",";
+		else cout << "Ground Truth,False Positive,";
+		for (int recognised_as_index = 0; recognised_as_index < confusion_size; recognised_as_index++)
+			cout << confusion_matrix[ground_truth_index][recognised_as_index] << ",";
 		cout << endl;
-		for (int ground_truth_index = 0; (ground_truth_index <= class_names.size()); ground_truth_index++)
-		{
-			if (ground_truth_index < confusion_size - 1)
-				cout << "Ground Truth," << class_names[ground_truth_index] << ",";
-			else cout << "Ground Truth,False Positive,";
-			for (int recognised_as_index = 0; recognised_as_index < confusion_size; recognised_as_index++)
-				cout << confusion_matrix[ground_truth_index][recognised_as_index] << ",";
-			cout << endl;
-		}
-		double precision = ((double)tp) / ((double)(tp + fp));
-		double recall = ((double)tp) / ((double)(tp + fn));
-		double f1 = 2.0*precision*recall / (precision + recall);
-		cout << endl << "Precision = " << precision << endl << "Recall = " << recall << endl << "F1 = " << f1 << endl;
+	}
+	double precision = ((double)tp) / ((double)(tp + fp));
+	double recall = ((double)tp) / ((double)(tp + fn));
+	double f1 = 2.0*precision*recall / (precision + recall);
+	cout << endl << "Precision = " << precision << endl << "Recall = " << recall << endl << "F1 = " << f1 << endl;
 }
 
 
@@ -906,8 +880,8 @@ void ObjectAndLocation::setImage(Mat object_image)
 Mat gaussianBlur(Mat image, string fileName)
 {
 	Mat blurredImg;
-	GaussianBlur(image, blurredImg, Size(5, 5), 0, 0);
-	showImage("Gaussian blur " + fileName, blurredImg);
+	GaussianBlur(image, blurredImg, Size(31, 31), 3, 3);
+	//showImage("Gaussian blur " + fileName, blurredImg);
 	return blurredImg;
 }
 
@@ -929,7 +903,7 @@ Mat laplacian(Mat image, string fileName)
 	Mat imgLaplacian;
 	filter2D(image, imgLaplacian, CV_32F, kernel);
 	imgLaplacian.convertTo(imgLaplacian, CV_8UC3);
-	showImage( "Laplace Filtered Image " + fileName, imgLaplacian );
+	showImage("Laplace Filtered Image " + fileName, imgLaplacian);
 	return imgLaplacian;
 }
 
@@ -1023,7 +997,7 @@ Mat segmentRegions(Mat image, string fileName)
 	Mat blurredImg = gaussianBlur(image, fileName);
 
 	Mat lapacianImg = laplacian(image, fileName);
-	
+
 	//Mat sharpenedImg = sharpen(image, lapacianImg, fileName);
 
 	Mat binaryImg = binary(lapacianImg, fileName);
@@ -1033,7 +1007,7 @@ Mat segmentRegions(Mat image, string fileName)
 	// Threshold to obtain the peaks
 	// This will be the markers for the foreground objects
 	threshold(distImg, distImg, 0.4, 1.0, THRESH_BINARY);
-	
+
 	// Dilate a bit the dist image
 	Mat kernel1 = Mat::ones(3, 3, CV_8U);
 	dilate(distImg, distImg, kernel1);
@@ -1068,13 +1042,15 @@ vector<RotatedRect> getBoxes(Mat image, string fileName)
 		vector<Point> tmp(contours[i].size());
 		float epsilon = 0.1*arcLength(contours[i], true);
 		approxPolyDP(contours[i], tmp, epsilon, true);
-		RotatedRect tmpRect = minAreaRect(tmp);
-		
-		if (tmpRect.size.height != 0 && tmpRect.size.width != 0) {
-			if (0.66 < (tmpRect.size.height / tmpRect.size.width) < 1.5) {
-				if (tmpRect.size.height * tmpRect.size.height > 0.001 * imgSize.height * imgSize.width) {
-					contours_poly.push_back(tmp);
-					rotatedRect.push_back(tmpRect);
+		if (tmp.size() == 4) {
+			RotatedRect tmpRect = minAreaRect(tmp);
+
+			if (tmpRect.size.height != 0 && tmpRect.size.width != 0) {
+				if (0.66 < (tmpRect.size.height / tmpRect.size.width) < 1.5) {
+					if (tmpRect.size.height * tmpRect.size.height > 0.001 * imgSize.height * imgSize.width) {
+						contours_poly.push_back(tmp);
+						rotatedRect.push_back(tmpRect);
+					}
 				}
 			}
 		}
@@ -1099,111 +1075,179 @@ vector<RotatedRect> getBoxes(Mat image, string fileName)
 	return rotatedRect;
 }
 
+bool containPoint(RotatedRect rectangle, Point2f point) {
+
+	//Get the corner points.
+	Point2f corners[4];
+	rectangle.points(corners);
+
+	//Convert the point array to a vector.
+	Point2f* lastItemPointer = (corners + sizeof corners / sizeof corners[0]);
+	vector<Point2f> contour(corners, lastItemPointer);
+
+	//Check if the point is within the rectangle.
+	double indicator = pointPolygonTest(contour, point, false);
+	bool rectangleContainsPoint = (indicator > 0);
+	return rectangleContainsPoint;
+}
+
 void ImageWithBlueSignObjects::LocateAndAddAllObjects(AnnotatedImages& training_images)
 {
-	// *** Student needs to develop this routine and add in objects using the addObject method
-	// Locate
-	
-	//Mat segmentedImg = segmentRegions(image, filename);
-	//Mat blurredImg = gaussianBlur(image, filename);
+	cout << "Analysing" << filename << "...." << "\n";
+	vector<ImageWithObjects *> train_objs = training_images.annotated_images;
+	vector<pair<Mat, string>> train_objImages;
+	for (int i = 0; i < train_objs.size(); i++) {
+		ObjectAndLocation* obj = train_objs[i]->getObject(0);
 
-	//cvtColor(image, image, COLOR_BGR2GRAY);
-	//Mat dst;
-	//equalizeHist(image, dst);
-	//showImage("Source image " + filename, image);
-	//showImage("Equalized Image " + filename, dst);
-	//cvtColor(dst, dst, COLOR_GRAY2BGR);
+		Mat img = obj->getImage();
+		string className = obj->getName();
+		resize(img, img, Size(200, 200));
+		cvtColor(img, img, COLOR_BGR2GRAY);
+		GaussianBlur(img, img, Size(5, 5), 0, 0);
+		//adaptiveThreshold(img, img, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY_INV, 11, 2);
+		threshold(img, img, 200, 255, THRESH_BINARY | THRESH_OTSU);
 
-	//Mat hsv;
-	//cvtColor(image, hsv, COLOR_BGR2HSV);
-	//
-	//Mat lab;
-	//cvtColor(image, lab, COLOR_BGR2Lab);
-	//
-	//Mat mask;
-	//inRange(hsv, Scalar(100,140,0), Scalar(140, 255, 255), mask);
+		getRectSubPix(img, Size(176, 176), Point2f(99.0, 99.0), img);
 
-	//Mat kernel1 = Mat::ones(5, 5, CV_8U);
-	//Mat kernel2 = Mat::ones(5, 5, CV_8U);
-	//morphologyEx(mask, mask, cv::MORPH_OPEN, kernel1);
-	//morphologyEx(mask, mask, cv::MORPH_CLOSE, kernel2);
+		Mat flipVertical;
+		Mat flipHorizontal;
+		Mat flipBoth;
 
-	//Mat res;
-	//bitwise_and(image, image, res, mask);
+		flip(img, flipVertical, 0);
+		flip(img, flipHorizontal, 1);
+		flip(img, flipBoth, -1);
 
-	//showImage("HSV segmentation " + filename, res);
+		//showImage("train", img);
+		//showImage("train", flipVertical);
+		//showImage("train", flipHorizontal);
+		//showImage("train", flipBoth);
+
+		train_objImages.push_back(make_pair(img, className));
+		train_objImages.push_back(make_pair(flipVertical, className));
+		train_objImages.push_back(make_pair(flipHorizontal, className));
+		train_objImages.push_back(make_pair(flipBoth, className));
+
+		for (int angle = 90.0; angle < 360.0; angle += 90.0) {
+			Mat M, rotated;
+			M = getRotationMatrix2D(Point2f(87, 87), angle, 1.0);
+			// perform the affine transformation
+			warpAffine(img, rotated, M, img.size(), INTER_CUBIC);
+			//showImage("train", rotated);
+			train_objImages.push_back(make_pair(rotated, className));
+		}
+
+	}
+
+
 
 	// Thresholding
 	Mat gray;
 	cvtColor(image, gray, COLOR_BGR2GRAY);
 	Mat blurred = gaussianBlur(gray, filename);
 
-	adaptiveThreshold(blurred, blurred, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY_INV, 21, 2);
 	//threshold(blurred, blurred, 200, 255, THRESH_BINARY | THRESH_OTSU);
-	showImage("Threshold " + filename, blurred);
+	adaptiveThreshold(blurred, blurred, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY_INV, 21, 2);
+	//showImage("Threshold " + filename, blurred);
+
+	
 
 	//Mat out;
 	//int thresh = 100;
 	//Canny(blurred, out, thresh, thresh * 3);
 	//showImage("Canny" + filename, out);
 
-	showImage("Opened " + filename, blurred);
-
 	vector<RotatedRect> possibleBoxes = getBoxes(blurred, filename);
+	map < string, vector < pair<int, Mat> >> candidates;
+	float match_thresh = 0.5;
 
-	Mat test_data;
-	Mat results;
-	vector<vector<int>> candidates;
+	for (int i = 0; i < Classes.size(); i++) {
+		candidates.insert({ Classes[i], vector<pair<int, Mat>>() });
+	}
 
-	for (int i = 0; i < possibleBoxes.size(); i++) {
+	for (int j = 0; j < possibleBoxes.size(); j++) {
+
+
 		Mat M, rotated, cropped;
-		float angle = possibleBoxes[i].angle;
-		Size rect_size = possibleBoxes[i].size;
+		float angle = possibleBoxes[j].angle;
+		Size rect_size = possibleBoxes[j].size;
 
-		if (possibleBoxes[i].angle < -45.) {
+		if (possibleBoxes[j].angle < -45.) {
 			angle += 90.0;
 			swap(rect_size.width, rect_size.height);
 		}
-		// get the rotation matrix
-		M = getRotationMatrix2D(possibleBoxes[i].center, angle, 1.0);
+		// get the rotation matrix 
+		M = getRotationMatrix2D(possibleBoxes[j].center, angle, 1.0);
 		// perform the affine transformation
 		warpAffine(image, rotated, M, image.size(), INTER_CUBIC);
 		// crop the resulting image
-		getRectSubPix(rotated, rect_size, possibleBoxes[i].center, cropped);
+		getRectSubPix(rotated, rect_size, possibleBoxes[j].center, cropped);
 
 		Mat float_data, resized;
 		resize(cropped, resized, Size(200, 200));
 		cvtColor(resized, resized, COLOR_BGR2GRAY);
 		GaussianBlur(resized, resized, Size(5, 5), 0, 0);
-		adaptiveThreshold(resized, resized, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY_INV, 11, 2);
-		//showImage("test", resized);
-		resized.convertTo(float_data, CV_32FC1);
-		test_data.push_back(float_data.reshape(1, 1));
-	}
+		//adaptiveThreshold(resized, resized, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY_INV, 11, 2);
+		threshold(resized, resized, 200, 255, THRESH_BINARY | THRESH_OTSU);
 
-	int idx = 0;
-	for (auto it = classesSVM.begin(); it != classesSVM.end(); it++) {
-		auto t = it->second->getC();
-		auto s = it->second->getCoef0();
-		auto a = it->second->getGamma();
-		auto v = it->second->getDegree();
-		auto b = it->second->getKernelType();
-		auto l = it->second->getType();
-		auto q = it->second->getNu();
-		auto d = it->second->getP();
+		getRectSubPix(resized, Size(176, 176), Point2f(99.0, 99.0), resized);
 
-		it->second->predict(test_data, results, cv::ml::StatModel::RAW_OUTPUT);
-		
-		for (int i = 0; i < results.total(); i++) {
-			int tmp = results.at<int>(i);
-			if (results.at<int>(i) == 1) {
-				candidates[idx].push_back(i);
+		float val = 1;
+		string classname;
+		//if (filename == "Blue Signs/Testing/Blue020.jpg"){
+		//	showImage(classname, resized);
+		//}
+		//
+		for (int i = 0; i < train_objImages.size(); i++) {
+			pair <Mat, string> curImg = train_objImages[i];
+			Mat result;
+
+			matchTemplate(resized, curImg.first, result, TM_SQDIFF_NORMED);
+			auto r = result.at<float>(0);
+
+			if (r < match_thresh && r < val) {
+				val = r;
+				classname = curImg.second;
 			}
 		}
-		idx++;
+
+		if (val < match_thresh) {
+			candidates[classname].push_back(make_pair(j, resized));
+			//showImage(classname, resized);
+		}
+
+
 	}
-	
-	showImage(filename, image);
+
+	vector<RotatedRect> boxes;
+
+	for (auto it = candidates.begin(); it != candidates.end(); it++) {
+		for (size_t i = 0; i < it->second.size(); i++) {
+
+			RotatedRect box = possibleBoxes[it->second[i].first];
+			boxes.push_back(box);
+		}
+	}
+
+	for (auto it = candidates.begin(); it != candidates.end(); it++) {
+		for (size_t i = 0; i < it->second.size(); i++) {
+
+			RotatedRect box = possibleBoxes[it->second[i].first];
+			cv::Point2f pts[4];
+			box.points(pts);
+
+			bool add = true;
+			for (int j = 0; j < boxes.size(); j++) {
+				if (containPoint(boxes[j], pts[0]) && containPoint(boxes[j], pts[1]) && containPoint(boxes[j], pts[2]) && containPoint(boxes[j], pts[3])) {
+					add = false;
+				}
+			}
+			if (add) {
+				this->addObject(it->first, pts[0].x, pts[0].y, pts[1].x, pts[1].y, pts[2].x, pts[2].y, pts[3].x, pts[3].y, it->second[i].second);
+			}
+		}
+	}
+
+	//showImage(filename, image);
 }
 
 

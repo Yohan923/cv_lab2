@@ -1,0 +1,14 @@
+Recognised as:,Coffee,Disabled,Escalator,Exit,Gents,Information,Ladies,Lift,One,Stairs,TicketDesk,Two,False Negative
+Coffee,3,0,0,0,0,0,0,0,0,0,0,0,2
+Disabled,0,2,0,0,0,0,0,0,0,0,0,0,1
+Escalator,0,0,2,0,0,0,0,0,0,0,0,0,0
+Exit,0,0,0,3,0,0,0,0,0,0,0,0,2
+Gents,0,0,0,0,6,0,0,0,0,0,0,0,0
+Information,0,0,0,0,0,8,0,0,0,0,0,0,0
+Ladies,0,0,0,0,0,0,7,0,0,0,0,0,0
+Lift,0,0,0,0,0,0,0,9,0,0,0,0,2
+One,0,0,0,0,0,0,0,0,10,0,0,0,0
+Stairs,0,0,0,0,0,0,0,0,0,4,0,0,5
+TicketDesk,0,0,0,0,0,0,0,0,0,0,5,0,1
+Two,0,0,0,0,0,0,0,0,0,0,0,8,1
+False Positive,0,0,0,0,0,0,0,1,1,0,0,1,0
